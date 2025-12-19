@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: transparent; }
+  video { width: 100%; height: 100%; object-fit: cover; }
+</style>
+</head>
+<body>
+  <video id="myVideo" autoplay loop muted playsinline>
+    <source id="videoSource" src="" type="video/mp4">
+  </video>
+
+  <script>
+    // 1. 기본 주소 설정 (김잉크님의 저장소 주소)
+    const baseRepoUrl = "https://raw.githubusercontent.com/giminktheghost/Web-assets/main/";
+    
+    // 2. 주소창에서 '?v=파일명' 부분을 찾아내는 코드
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoFileName = urlParams.get('v');
+
+    // 3. 영상이 지정되어 있으면 재생, 없으면 아무것도 안 함
+    if (videoFileName) {
+      const videoElement = document.getElementById('myVideo');
+      const sourceElement = document.getElementById('videoSource');
+      
+      // 최종 주소 완성 (기본주소 + 파일명)
+      sourceElement.src = baseRepoUrl + videoFileName;
+      videoElement.load(); // 영상 새로고침
+    }
+  </script>
+</body>
+</html>
